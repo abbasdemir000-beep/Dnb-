@@ -37,6 +37,9 @@ The best partner deep-link is opened and click is logged for commission tracking
 2. Expand to Erbil/Baghdad (3 months): more categories + daily refresh + ads + pilot launch
 3. Full RAG Launch (6 months): vector + LLM integration + verification + wider city rollout
 
+## Runnable MVP Prototype
+Run the browser MVP locally with `npm start`, then open `http://localhost:4173`. Validate core search, map, AI retrieval, and routing logic with `npm test`. See [docs/runbook.md](docs/runbook.md) for the local runbook.
+
 ## App Map
 See the detailed Phase 1 app map and parallel execution plan in [docs/app-map.md](docs/app-map.md).
 
