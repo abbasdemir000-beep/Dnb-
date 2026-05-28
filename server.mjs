@@ -4,7 +4,7 @@ import { createReadStream } from 'node:fs';
 import { extname, join, normalize, relative, resolve } from 'node:path';
 import { networkInterfaces } from 'node:os';
 
-const root = resolve(process.cwd());
+const root = resolve(process.env.STATIC_ROOT || process.cwd());
 const port = Number(process.env.PORT || 4173);
 const host = process.env.HOST || '0.0.0.0';
 

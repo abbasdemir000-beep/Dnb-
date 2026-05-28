@@ -217,7 +217,7 @@ function logRoute() {
 }
 
 async function boot() {
-  const response = await fetch('data/places.json');
+  const response = await fetch('/data/places.json');
   state.data = await response.json();
 
   $('#searchForm').addEventListener('submit', (event) => {

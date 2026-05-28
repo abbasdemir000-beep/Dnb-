@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node server.mjs",
     "test": "node tests/app.test.mjs",
-    "dev": "node server.mjs"
+    "dev": "node server.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "STATIC_ROOT=dist node server.mjs"
   },
   "keywords": [
     "iraq-ai",

@@ -34,3 +34,21 @@ The test suite validates seeded city data, map coordinates, multilingual lookup,
 2. Replace local assistant retrieval with backend retrieval + LLM orchestration.
 3. Replace `localStorage` event logging with the `routing_events` table.
 4. Replace seeded partner links with approved affiliate partner deep links.
+
+
+## Deploy to Vercel
+
+The repository includes `vercel.json`, so Vercel can deploy the static MVP without extra dashboard tweaks:
+
+- Framework preset: **Other**
+- Build command: `npm run build`
+- Output directory: `dist`
+
+From the Vercel dashboard, import the Git repository and deploy the current branch. From the CLI, run:
+
+```bash
+npm run build
+vercel --prod
+```
+
+After deployment, open the Vercel URL and verify `/health` locally only if using `npm start`; production static deploys serve the app from `dist`.

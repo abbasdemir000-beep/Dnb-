@@ -38,7 +38,7 @@ The best partner deep-link is opened and click is logged for commission tracking
 3. Full RAG Launch (6 months): vector + LLM integration + verification + wider city rollout
 
 ## Runnable MVP Prototype
-Run the browser MVP locally with `npm start`, then open `http://localhost:4173` or the forwarded port `4173` in your cloud/dev environment. Do not open `index.html` directly with `file://`; the browser will block the seed-data fetch. Validate core search, map, AI retrieval, and routing logic with `npm test`. See [docs/runbook.md](docs/runbook.md) for the local runbook.
+Run the browser MVP locally with `npm start`, then open `http://localhost:4173` or the forwarded port `4173` in your cloud/dev environment. Build the Vercel-ready static output with `npm run build`; Vercel is configured to serve the generated `dist` directory. Do not open `index.html` directly with `file://`; the browser will block the seed-data fetch. Validate core search, map, AI retrieval, and routing logic with `npm test`. See [docs/runbook.md](docs/runbook.md) for the local runbook.
 
 ## App Map
 See the detailed Phase 1 app map and parallel execution plan in [docs/app-map.md](docs/app-map.md).
