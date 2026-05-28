@@ -238,12 +238,32 @@ async function boot() {
     if (card) selectPlace(card.dataset.placeId);
     if (event.target.id === 'routeButton') logRoute();
   });
-  $('#assistantForm').addEventListener('submit', (event) => {
+  $('#assistantForm').addEventListener('submit', async (event) => {
     event.preventDefault();
     const question = $('#assistantQuestion').value;
-    const answer = buildAssistantAnswer(state.data, state, question);
-    const lines = answer.matches.map((place) => `• ${getLocalized(place, 'name', state.language)} — ${getLocalized(place, 'description', state.language)}`);
-    $('#assistantAnswer').textContent = `${labels[state.language].answerPrefix}\n${lines.join('\n') || labels[state.language].noResults}\n\n${labels[state.language].confidence}: ${answer.confidence}`;
+    $('#assistantAnswer').textContent = 'Thinking with Iraq.ai...';
+
+    try {
+      const response = await fetch('/api/assistant', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          question,
+          cityId: state.cityId,
+          categoryId: state.categoryId,
+          language: state.language
+        })
+      });
+      const payload = await response.json();
+      if (!response.ok) throw new Error(payload.error || 'AI request failed');
+
+      const sources = (payload.sources || []).map((source) => `• ${source.name} (${source.verified_at})`).join('\n');
+      $('#assistantAnswer').textContent = `${payload.answer}\n\n${labels[state.language].confidence}: ${payload.confidence}\nProvider: ${payload.provider} ${payload.model || ''}\nSources:\n${sources || 'Internal records'}`;
+    } catch (error) {
+      const answer = buildAssistantAnswer(state.data, state, question);
+      const lines = answer.matches.map((place) => `• ${getLocalized(place, 'name', state.language)} — ${getLocalized(place, 'description', state.language)}`);
+      $('#assistantAnswer').textContent = `${labels[state.language].answerPrefix}\n${lines.join('\n') || labels[state.language].noResults}\n\n${labels[state.language].confidence}: ${answer.confidence}\nProvider: local fallback\nNote: ${error.message}`;
+    }
   });
   $('#exportEvents').addEventListener('click', () => {
     const blob = new Blob([JSON.stringify(state.events, null, 2)], { type: 'application/json' });

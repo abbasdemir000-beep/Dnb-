@@ -3,6 +3,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { createReadStream } from 'node:fs';
 import { extname, join, normalize, relative, resolve } from 'node:path';
 import { networkInterfaces } from 'node:os';
+import assistantHandler from './api/assistant.mjs';
 
 const root = resolve(process.env.STATIC_ROOT || process.cwd());
 const port = Number(process.env.PORT || 4173);
@@ -50,6 +51,11 @@ async function resolveRequestPath(urlPath) {
 }
 
 const server = createServer(async (request, response) => {
+  if (request.url === '/api/assistant') {
+    await assistantHandler(request, response);
+    return;
+  }
+
   if (request.url === '/health') {
     response.writeHead(200, { 'content-type': 'application/json; charset=utf-8' });
     response.end(JSON.stringify({ ok: true, app: 'Iraq.ai MVP' }));
