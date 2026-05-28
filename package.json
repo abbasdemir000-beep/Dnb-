@@ -4,8 +4,9 @@
   "private": true,
   "description": "Runnable Iraq.ai city assistant MVP prototype with search, map, AI answers, routing, and admin QA.",
   "scripts": {
-    "start": "python3 -m http.server 4173",
-    "test": "node tests/app.test.mjs"
+    "start": "node server.mjs",
+    "test": "node tests/app.test.mjs",
+    "dev": "node server.mjs"
   },
   "keywords": [
     "iraq-ai",

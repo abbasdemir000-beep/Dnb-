@@ -6,7 +6,9 @@
 npm start
 ```
 
-Open <http://localhost:4173> in a browser.
+The server also exposes a health check at <http://localhost:4173/health>.
+
+Open <http://localhost:4173> in a local browser. If you are using Codespaces, Gitpod, Replit, Cursor cloud, or another remote container, open the forwarded port `4173` from that environment. Do not open `index.html` with `file://`; browser security blocks the JSON seed-data fetch.
 
 ## Test locally
 
