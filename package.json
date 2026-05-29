@@ -1,0 +1,20 @@
+{
+  "name": "iraq-ai-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Runnable Iraq.ai city assistant MVP prototype with search, map, AI answers, routing, and admin QA.",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node tests/app.test.mjs",
+    "dev": "node server.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "STATIC_ROOT=dist node server.mjs"
+  },
+  "keywords": [
+    "iraq-ai",
+    "city-assistant",
+    "mvp"
+  ],
+  "license": "UNLICENSED",
+  "type": "module"
+}

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Iraq.ai MVP</title>
+    <meta name="description" content="Iraq.ai multilingual city assistant MVP for Iraqi cities." />
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="topbar" aria-label="Primary">
+        <a class="brand" href="#home" aria-label="Iraq.ai home"><span>🇮🇶</span> Iraq.ai</a>
+        <div class="nav-actions">
+          <a href="#assistant">AI</a>
+          <a href="#admin">Admin</a>
+          <button id="themeToggle" type="button">Dark</button>
+        </div>
+      </nav>
+      <section id="home" class="hero-grid">
+        <div>
+          <p class="eyebrow">Arabic • Kurdish • English</p>
+          <h1>Your trusted AI city assistant for Iraq.</h1>
+          <p class="hero-copy">Search verified places, browse synchronized map/list results, ask city-aware AI questions, and route service requests to ranked partners.</p>
+          <form id="searchForm" class="search-card">
+            <label for="queryInput">What do you need?</label>
+            <div class="search-row">
+              <input id="queryInput" name="query" placeholder="restaurant, صيدلية, cafe, hospital..." autocomplete="off" />
+              <button type="submit">Search</button>
+            </div>
+            <div class="filters" aria-label="Search filters">
+              <select id="citySelect" aria-label="City"></select>
+              <select id="categorySelect" aria-label="Category"></select>
+              <select id="languageSelect" aria-label="Language">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="ku">کوردی</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <aside class="metric-card" aria-label="MVP status">
+          <strong>Phase 1 MVP</strong>
+          <span><b id="placeCount">0</b> seeded places</span>
+          <span><b>3</b> cities</span>
+          <span><b>0.7/0.3</b> partner scoring</span>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="workspace" aria-label="Search workspace">
+        <div class="panel map-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Interactive map</p>
+              <h2>Map + list synced results</h2>
+            </div>
+            <span id="resultSummary" class="pill">Loading...</span>
+          </div>
+          <div id="mapCanvas" class="map-canvas" role="img" aria-label="Schematic city map with place pins"></div>
+        </div>
+        <div class="panel results-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Verified places</p>
+              <h2>Results</h2>
+            </div>
+          </div>
+          <div id="resultsList" class="results-list"></div>
+        </div>
+      </section>
+
+      <section class="detail-grid">
+        <article id="placeDetail" class="panel detail-panel" aria-live="polite"></article>
+        <article id="assistant" class="panel assistant-panel">
+          <p class="eyebrow">AI assistant</p>
+          <h2>Ask about this city</h2>
+          <form id="assistantForm" class="assistant-form">
+            <textarea id="assistantQuestion" rows="4" placeholder="Example: best verified restaurant near me?" required></textarea>
+            <button type="submit">Ask Iraq.ai</button>
+          </form>
+          <div id="assistantAnswer" class="answer-box">Ask a question to get an answer using internal curated city data first.</div>
+        </article>
+      </section>
+
+      <section id="admin" class="panel admin-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Admin QA</p>
+            <h2>Moderation dashboard</h2>
+          </div>
+          <button id="exportEvents" type="button">Export events</button>
+        </div>
+        <div class="admin-grid">
+          <div>
+            <h3>Data quality queue</h3>
+            <ul id="qaList" class="qa-list"></ul>
+          </div>
+          <div>
+            <h3>Routing events</h3>
+            <pre id="eventLog" class="event-log">[]</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Prototype data is seeded for MVP demonstration. Replace with Supabase tables before production launch.</p>
+    </footer>
+
+    <script type="module" src="src/app.js"></script>
+  </body>
+</html>
